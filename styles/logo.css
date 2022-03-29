@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=Monoton&display=swap');
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.logoBox {
+  font-family: "Monoton";
+  text-align: center;
+  white-space: nowrap;
+}
+.logoBox span {
+  -webkit-transform: translateZ(0) translate3D(0, 0, 0);
+          transform: translateZ(0) translate3D(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  will-change: opacity;
+}
+.logoBox .logo {
+  color: rgba(255, 249, 195, 0.933);
+  text-shadow: 0 0 0 transparent, 0 0 10px #FFD365, 0 0 20px rgba(255, 211, 101, 0.5), 0 0 40px #FFD365, 0 0 100px #FFD365, 0 0 200px #FFD365, 0 0 300px #FFD365, 0 0 500px #FFD365, 0 0 1000px #FFD365;
+  -webkit-animation: blink 3s infinite alternate;
+          animation: blink 3s infinite alternate;
+}
+@-webkit-keyframes blink {
+  40% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.8;
+  }
+  43% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.2;
+  }
+  46% {
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  40% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.8;
+  }
+  43% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.2;
+  }
+  46% {
+    opacity: 1;
+  }
+}

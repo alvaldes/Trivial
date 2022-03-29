@@ -1,0 +1,57 @@
+/* About */
+.card_history{
+  background-image: url(/images/card_history.svg);
+}
+.card_literature{
+  background-image: url(/images/card_literature.svg);
+}
+.card_cinema{
+  background-image: url(/images/card_cinema.jpg);
+}
+.card_geography{
+  background-image: url(/images/card_geography.svg);
+}
+.card_music{
+  background-image: url(/images/card_music.svg);
+}
+.card_science{
+  background-image: url(/images/card_science.jpg);
+}
+
+.card {
+  display: flex;
+  height: 280px;
+  min-width: 200px;
+  background-color: #2F855A;
+  background-size: cover;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #112527;
+  /* margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.card:not(:first-child) {
+    margin-left: -50px;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
+.card:hover ~ .card {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+
+.title {
+  color: transparent;
+  font-size: 2em;
+  font-weight: bold;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
