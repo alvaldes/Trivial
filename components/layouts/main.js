@@ -18,7 +18,7 @@ const Main = ({ children }) => {
 
       <Container align="center" className="footer" mt={35}>
         <Box as="span" color={useColorModeValue("light_white", "light_white")}>
-          &copy; {year} Trivial. All Rights Reserved.
+          &copy; {year} Trivial. Under MIT License.
         </Box>
       </Container>
     </Box>

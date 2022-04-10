@@ -4,13 +4,15 @@ import {
   Badge,
   Text,
   Center,
-  Divider,
   Avatar,
+  SkeletonCircle,
+  Stack,
+  SkeletonText,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 const item = (props) => {
-  const { data, index, playIndex, active } = props;
+  const { data, active } = props;
   const [initialDate, setInitialDate] = useState();
   const [initialTime, setInitialTime] = useState();
   const [durationTime, setDurationTime] = useState(0);
@@ -30,24 +32,39 @@ const item = (props) => {
   }, [data]);
 
   if (isLoading) {
-    return <div>wait</div>;
-  } else if (
-    index != playIndex &&
-    index != playIndex + 1 &&
-    index != playIndex + 2
-  )
-    return null;
-  else {
     return (
       <Center mb={5}>
-        <Flex
-          bg={active ? "teal.200" : "gray.100"}
+        <Box
+          padding="6"
+          boxShadow="lg"
+          bg="white"
           borderRadius={50}
           px={10}
           py={5}
         >
+          <Stack direction="row">
+            <SkeletonCircle size={12} />
+            <SkeletonText
+              mt={4}
+              noOfLines={2}
+              spacing="4"
+              width={{ base: "10rem", md: "20rem" }}
+            />
+          </Stack>
+        </Box>
+      </Center>
+    );
+  } else {
+    return (
+      <Center mb={2}>
+        <Flex
+          bg={active ? "teal.200" : "gray.100"}
+          borderRadius={50}
+          px={{ base: 5, md: 10 }}
+          py={{ base: 2, md: 5 }}
+        >
           <Avatar
-            name={String(index + 1)
+            name={String(data.rankingPos + 1)
               .split("")
               .join(" ")}
             size="lg"
@@ -55,12 +72,9 @@ const item = (props) => {
             bg="green.700"
           />
           <Box ml={4}>
-            <Text fontSize="xl" as="strong">
+            <Text fontSize={{ base: "md", md: "xl" }} as="strong">
               {data.name}
             </Text>
-            <Badge colorScheme="blue" ml={3}>
-              {data.age} | {data.country}
-            </Badge>
             <Box>
               <Badge colorScheme="yellow" variant="solid">
                 {data.points} Points
@@ -68,8 +82,8 @@ const item = (props) => {
               <Badge colorScheme="whatsapp" ml={2} variant="solid">
                 {durationTime} min
               </Badge>
-              <Badge colorScheme="pink" ml={2}>
-                {initialDate} | {initialTime.slice(0, 8)}
+              <Badge colorScheme="pink" ml={{ base: 0, sm: 2 }}>
+                {initialTime.slice(0, 8)} | {initialDate}
               </Badge>
             </Box>
           </Box>

@@ -9,7 +9,7 @@ const start = (props) => {
   const onSubmit = (user) => {
     const date = new Date();
     props.onSaveUser({ ...user, date: date });
-    Router.push("/test");
+    Router.push("/quiz");
   };
 
   return (

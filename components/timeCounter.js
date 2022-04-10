@@ -21,7 +21,7 @@ const timeContainer = (props) => {
   }, [props.finishTrivia]);
 
   return (
-    <Heading fontSize="xl" color="teal.500" mr={5}>
+    <Heading fontSize={{ sm: "lg", md: "xl" }} color="teal.500" mr={5}>
       {min < 10 ? "0" + min : min} : {sec < 10 ? "0" + sec : sec}
     </Heading>
   );

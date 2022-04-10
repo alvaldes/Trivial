@@ -44,6 +44,7 @@ function HookForm(props) {
           {...register("name", {
             required: "This is required",
             minLength: { value: 4, message: "Minimum length should be 4" },
+            maxLength: { value: 18, message: "Maximum length should be 18" },
           })}
         />
         <FormErrorMessage>

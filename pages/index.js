@@ -1,4 +1,3 @@
-import Breadcrumb from "../components/breadcrumb";
 import Nextlink from "next/link";
 import {
   Center,
@@ -11,7 +10,6 @@ import {
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import About from "../components/about";
 import Logo from "../components/logo";
-
 export default function Home() {
   return (
     <Box mt={{ base: 10, md: 0 }} color="white">
