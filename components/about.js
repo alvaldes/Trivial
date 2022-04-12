@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Box,
   Center,
@@ -10,35 +11,30 @@ import {
   AccordionPanel,
   Link,
 } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
+import Card from "../components/cards/card";
+import CardMobile from "../components/cards/cardMobile";
 
 const About = () => {
+  const [isMobile] = useMediaQuery("(max-width: 767px)");
+  const [showCards, setShowCards] = useState();
+
+  useEffect(() => {
+    setShowCards(() => (isMobile ? <CardMobile /> : <Card />));
+  }, [isMobile]);
+
   return (
-    <Box mt={50}>
-      <Heading mb={10}>Explore new Topics</Heading>
-      <Box display="flex">
-        <Center>
-          <div className="card card_history">
-            {/* <h3 className="title">History</h3> */}
-          </div>
-          <div className="card card_science">
-            {/* <h3 className="title">Science</h3> */}
-          </div>
-          <div className="card card_music">
-            {/* <h3 className="title">Music</h3> */}
-          </div>
-          <div className="card card_geography">
-            {/* <h3 className="title">Geography</h3> */}
-          </div>
-          <div className="card card_literature">
-            {/* <h3 className="title">Literature</h3> */}
-          </div>
-          <div className="card card_cinema">
-            {/* <h3 className="title">Cimena</h3> */}
-          </div>
-        </Center>
-      </Box>
-      <Heading mt={10}>Info Section</Heading>
-      <Text my={2} fontSize={{ base: "xl", md: "2xl" }}>
+    <Box mt={{ base: 10, md: 12 }}>
+      <Heading mb={{ base: 5, md: 10 }} fontSize={{ base: "2xl", md: "3xl" }}>
+        Explore new Topics
+      </Heading>
+
+      {showCards}
+
+      <Heading mt={{ base: 0, md: 10 }} fontSize={{ base: "2xl", md: "3xl" }}>
+        Info Section
+      </Heading>
+      <Text my={2} fontSize={{ base: "lg", md: "xl" }}>
         A game in which players are asked questions about different topics and
         they have to get as many correct answers as possible.
       </Text>
