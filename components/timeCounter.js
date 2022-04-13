@@ -5,28 +5,20 @@ import ErrorAlert from "../components/alert";
 const timeContainer = (props) => {
   const [sec, setSec] = useState(0);
   const [min, setMin] = useState(0);
-  const [delay, setDelay] = useState(0);
   const [errorTitle, setErrorTitle] = useState("");
   const [errorMsg, setErrorMsg] = useState([]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    setInterval(() => {
-      setSec((sec += 1));
-      if (sec === 59) {
+    const intervalId = setInterval(() => {
+      if (sec >= 59) {
         setMin((min += 1));
         setSec(0);
-      }
-      if (delay === sec) {
-        setErrorTitle("ERROR");
-        setErrorMsg([
-          "Something went wrong, make sure you don't accidentally leave the page while the tests are running.",
-        ]);
-        setIsError(true);
       } else {
-        setDelay(sec);
+        setSec((sec += 1));
       }
     }, 1000);
+    return () => clearInterval(intervalId);
   });
 
   useEffect(() => {
