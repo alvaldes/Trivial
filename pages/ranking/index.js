@@ -78,8 +78,8 @@ const Ranking = () => {
     return (
       <Box>
         <Logo />
-        <Box bg="white" borderRadius="30px" p={5} mt={{ base: -1, md: -10 }}>
-          <Heading align="center">🏅 Ranking 🏅</Heading>
+        <Box bg="white" borderRadius="30px" p={5} mt={{ base: 10, md: 20 }}>
+          <Heading align="center">🏅 Top 10 Ranking 🏅</Heading>
           <Divider borderColor="gray.500" my={3} />
           <ItemRanking key="1" data />
           <ItemRanking key="2" data />
@@ -99,8 +99,10 @@ const Ranking = () => {
     return (
       <Box>
         <Logo />
-        <Box bg="white" borderRadius="30px" p={5} mt={{ base: -1, md: -10 }}>
-          <Heading align="center">🏅 Ranking 🏅</Heading>
+        <Box bg="white" borderRadius="30px" p={5} mt={{ base: 1, md: 5 }}>
+          <Heading align="center" fontSize={{ base: "1em", md: "4em" }}>
+            🏅 Top 10 Ranking 🏅
+          </Heading>
           <Divider borderColor="gray.500" my={3} />
 
           {data.map((key) => (
@@ -110,7 +112,9 @@ const Ranking = () => {
           <Center>
             <ButtonGroup spacing={6}>
               <Nextlink href="/">
-                <Button colorScheme="teal">Home</Button>
+                <Button colorScheme="teal" variant="ghost">
+                  go Home
+                </Button>
               </Nextlink>
             </ButtonGroup>
           </Center>

@@ -24,7 +24,7 @@ const item = (props) => {
       setInitialDate(date);
       let convert = +data.time / 60;
       setDurationTime(
-        `${Math.floor(convert)}:${Math.floor((convert % 1) * 60)}`
+        `${Math.floor(convert)}:${Math.floor((convert % 1) * 60)}`,
       );
       setInitialTime(time);
       setIsLoading(false);
@@ -58,10 +58,11 @@ const item = (props) => {
     return (
       <Center mb={2}>
         <Flex
-          bg={active ? "teal.200" : "gray.100"}
+          bg={active ? "teal.200" : "blackAlpha.50"}
           borderRadius={50}
           px={{ base: 5, md: 10 }}
           py={{ base: 2, md: 5 }}
+          minW={{ base: "xs", md: "xl" }}
         >
           <Avatar
             name={String(data.rankingPos + 1)
@@ -69,7 +70,15 @@ const item = (props) => {
               .join(" ")}
             size="lg"
             my="auto"
-            bg="green.700"
+            bg={
+              data.rankingPos === 0
+                ? "yellow.400"
+                : data.rankingPos === 1
+                  ? "gray.400" // Silver color equivalent
+                  : data.rankingPos === 2
+                    ? "yellow.800" // Bronze color equivalent
+                    : "gray.900" // Default color
+            }
           />
           <Box ml={4}>
             <Text fontSize={{ base: "md", md: "xl" }} as="strong">
