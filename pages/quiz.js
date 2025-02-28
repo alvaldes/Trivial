@@ -36,7 +36,7 @@ const quiz = (props) => {
 
   function getTrivia() {
     return axios({
-      url: "https://the-trivia-api.com/questions?limit=20",
+      url: "https://the-trivia-api.com/v2/questions",
       method: "get",
     })
       .then((res) => res.data)
@@ -113,7 +113,7 @@ const quiz = (props) => {
   const checkAnswer = (answer) => {
     if (answer === trivia[currentQuestion].correctAnswer)
       setPoints((points += 1));
-    if (currentQuestion != 19) {
+    if (currentQuestion != 9) {
       setProgressbarSecondsTime(0);
       setCurrentQuestion(currentQuestion + 1);
     } else {
@@ -131,7 +131,7 @@ const quiz = (props) => {
     axios
       .post(
         "https://trivial-2b6f8-default-rtdb.firebaseio.com/ranking.json",
-        fireData
+        fireData,
       )
       .then((response) => {
         props.onSaveUser(fireData);
@@ -234,7 +234,7 @@ const quiz = (props) => {
           <Heading
             align="center"
             fontSize={{ sm: "xl", md: "4xl" }}
-          >{`${trivia[currentQuestion].question}`}</Heading>
+          >{`${trivia[currentQuestion].question.text}`}</Heading>
           <Center>
             <Stack
               direction={["column", "row"]}
@@ -254,7 +254,7 @@ const quiz = (props) => {
                 <Divider orientation="vertical" height={5} width={5} />
                 <Heading fontSize={{ sm: "lg", md: "xl" }} color="teal.500">{`${
                   currentQuestion + 1
-                }/20`}</Heading>
+                }/10`}</Heading>
                 <Divider orientation="vertical" height={5} width={5} />
                 <Heading
                   fontSize={{ sm: "lg", md: "xl" }}
