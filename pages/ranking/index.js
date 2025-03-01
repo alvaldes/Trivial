@@ -28,7 +28,7 @@ const Ranking = () => {
         ...data,
       });
     });
-    return aux;
+    return aux.slice(0, 10);
   };
 
   useEffect(() => {

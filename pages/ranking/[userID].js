@@ -31,7 +31,7 @@ const userRanking = () => {
         ...data,
       });
     });
-    return aux;
+    return aux.slice(0, 10);
   };
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const userRanking = () => {
       <Box>
         <Logo />
         <Box bg="white" borderRadius="30px" p={5} mt={{ base: -1, md: -10 }}>
-          <Heading align="center">🏅 Ranking 🏅</Heading>
+          <Heading align="center">🏅 Top 10 Ranking 🏅</Heading>
           <Divider borderColor="gray.500" my={3} />
           <ItemRanking key="1" data />
           <ItemRanking key="2" data />
@@ -111,7 +111,7 @@ const userRanking = () => {
       <Box>
         <Logo />
         <Box bg="white" borderRadius="30px" p={5} mt={{ base: -1, md: -10 }}>
-          <Heading align="center">🏅 Ranking 🏅</Heading>
+          <Heading align="center">🏅 Top 10 Ranking 🏅</Heading>
           <Divider borderColor="gray.500" my={3} />
 
           {data.map((key) => (
