@@ -14,6 +14,8 @@ import {
   SkeletonCircle,
   SkeletonText,
   Skeleton,
+  useToast,
+  Text,
 } from "@chakra-ui/react";
 import Logo from "../components/logo";
 import Alert from "../components/alert";
@@ -33,6 +35,8 @@ const quiz = (props) => {
   const [errorTitle, setErrorTitle] = useState("");
   const [errorMsg, setErrorMsg] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [reaction, setReaction] = useState("");
+  const toast = useToast();
 
   function getTrivia() {
     return axios({
@@ -111,8 +115,32 @@ const quiz = (props) => {
   };
 
   const checkAnswer = (answer) => {
-    if (answer === trivia[currentQuestion].correctAnswer)
+    if (answer === trivia[currentQuestion].correctAnswer) {
       setPoints((points += 1));
+      setReaction("✅ Correct!");
+      toast({
+        title: "Correct Answer!",
+        description: "You got it right! 🎉",
+        status: "success",
+        position: "top-right",
+        duration: 1500,
+        isClosable: true,
+      });
+    } else {
+      setReaction("❌ Wrong!");
+      toast({
+        title: "Wrong Answer!",
+        description:
+          "The correct answer was: " + trivia[currentQuestion].correctAnswer,
+        status: "error",
+        position: "top-right",
+        duration: 1500,
+        isClosable: true,
+      });
+    }
+    //Reset reaction after 1.5 seconds
+    setTimeout(() => setReaction(""), 1500);
+
     if (currentQuestion != 9) {
       setProgressbarSecondsTime(0);
       setCurrentQuestion(currentQuestion + 1);
@@ -235,6 +263,7 @@ const quiz = (props) => {
             align="center"
             fontSize={{ sm: "xl", md: "4xl" }}
           >{`${trivia[currentQuestion].question.text}`}</Heading>
+
           <Center>
             <Stack
               direction={["column", "row"]}
@@ -246,7 +275,7 @@ const quiz = (props) => {
                 fontSize={{ sm: "lg", md: "xl" }}
                 mr={5}
                 color="teal.500"
-              >{`Category: ${trivia[currentQuestion].category}`}</Heading>
+              >{`Category: ${trivia[currentQuestion].category.replace(/_/g, " ")}`}</Heading>
               <Divider orientation="vertical" height={5} width={5} />
 
               <Stack direction="row">
@@ -264,43 +293,34 @@ const quiz = (props) => {
             </Stack>
           </Center>
           <Progress
-            colorScheme="blue"
+            colorScheme="red"
             m={5}
             value={progressbarSecondsTime}
             sx={{ borderRadius: "50px" }}
+            hasStripe
+            isaAnimated
           />
+
+          {/* Display reaction */}
+          {reaction && (
+            <Text size="xl" align="center" mt={3}>
+              {reaction}
+            </Text>
+          )}
 
           <FormControl>
             <RadioGroup ml={{ base: 6, md: 12 }} onChange={checkAnswer}>
               <Stack spacing={[1, 5]} direction="column">
-                <Radio
-                  value={options[0]}
-                  size="lg"
-                  sx={{ borderColor: "gray.500" }}
-                >
-                  {options[0]}
-                </Radio>
-                <Radio
-                  size="lg"
-                  value={options[1]}
-                  sx={{ borderColor: "gray.500" }}
-                >
-                  {options[1]}
-                </Radio>
-                <Radio
-                  size="lg"
-                  value={options[2]}
-                  sx={{ borderColor: "gray.500" }}
-                >
-                  {options[2]}
-                </Radio>
-                <Radio
-                  size="lg"
-                  value={options[3]}
-                  sx={{ borderColor: "gray.500" }}
-                >
-                  {options[3]}
-                </Radio>
+                {options.map((option, index) => (
+                  <Radio
+                    key={index}
+                    value={option}
+                    size="lg"
+                    sx={{ borderColor: "gray.500" }}
+                  >
+                    {option}
+                  </Radio>
+                ))}
               </Stack>
             </RadioGroup>
           </FormControl>
