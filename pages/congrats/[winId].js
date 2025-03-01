@@ -13,6 +13,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Alert from "../../components/alert";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use"; // To get window size for the confetti
 
 const finish = () => {
   const [data, setData] = useState([]);
@@ -22,6 +24,7 @@ const finish = () => {
   const [errorTitle, setErrorTitle] = useState("");
   const [errorMsg, setErrorMsg] = useState([]);
   const [isError, setIsError] = useState(false);
+  const { width, height } = useWindowSize(); // Get window size for the confetti
 
   const setRankingData = (convertdata, indexCurrent) => {
     switch (indexCurrent) {
@@ -133,6 +136,8 @@ const finish = () => {
   else
     return (
       <Box>
+        {/* 🎉 Confetti Effect When Q}uiz is Finished */}
+        <Confetti width={width} height={height} />
         <Logo />
         <Box bg="white" borderRadius="30px" p={5} mt={{ base: -1, md: -10 }}>
           <Heading align="center">Congratulations!</Heading>
