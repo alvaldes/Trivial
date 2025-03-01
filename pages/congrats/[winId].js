@@ -13,7 +13,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Alert from "../../components/alert";
-import Confetti from "react-confetti";
+import dynamic from "next/dynamic";
+const Confetti = dynamic(() => import("react-confetti"), { ssr: false }); // To avoid server side rendering
 import { useWindowSize } from "react-use"; // To get window size for the confetti
 
 const finish = () => {
