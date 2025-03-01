@@ -23,6 +23,8 @@ import TimeCounter from "../components/timeCounter";
 import { connect } from "react-redux";
 import { SAVE_USER } from "../libs/store/actions";
 import Router from "next/router";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use"; // To get window size for the confetti
 
 const quiz = (props) => {
   const [trivia, setTrivia] = useState(new Array("test"));
@@ -37,6 +39,7 @@ const quiz = (props) => {
   const [isError, setIsError] = useState(false);
   const [reaction, setReaction] = useState("");
   const toast = useToast();
+  const { width, height } = useWindowSize(); // Get window size for the confetti
 
   function getTrivia() {
     return axios({
@@ -257,6 +260,8 @@ const quiz = (props) => {
   } else {
     return (
       <Container maxW="container.lg">
+        {/* 🎉 Confetti Effect When Q}uiz is Finished */}
+        {finishTrivia && <Confetti width={width} height={height} />}
         <Logo />
         <Box bg="white" borderRadius="30px" p={5} mt={{ base: -1, md: -8 }}>
           <Heading
