@@ -8,8 +8,11 @@ import {
   SkeletonCircle,
   Stack,
   SkeletonText,
+  HStack,
+  Image,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import countries from "../libs/countries";
 
 const item = (props) => {
   const { data, active } = props;
@@ -17,6 +20,8 @@ const item = (props) => {
   const [initialTime, setInitialTime] = useState();
   const [durationTime, setDurationTime] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  const country = countries.find((country) => country.iso === data.country);
 
   useEffect(() => {
     if (data.date) {
@@ -81,9 +86,12 @@ const item = (props) => {
             }
           />
           <Box ml={4}>
-            <Text fontSize={{ base: "md", md: "xl" }} as="strong">
-              {data.name}
-            </Text>
+            <HStack spacing={2}>
+              <Text fontSize={{ base: "md", md: "xl" }} as="strong">
+                {data.name}
+              </Text>
+              <Image src={country?.flag} alt={country?.name} boxSize="1rem" />
+            </HStack>
             <Box>
               <Badge colorScheme="yellow" variant="solid">
                 {data.points} Points
