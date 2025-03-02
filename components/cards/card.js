@@ -1,27 +1,43 @@
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Center, Text } from "@chakra-ui/react";
+
+const categories = [
+  { className: "card_history", label: "History" },
+  { className: "card_science", label: "Science" },
+  { className: "card_music", label: "Music" },
+  { className: "card_geography", label: "Geography" },
+  { className: "card_literature", label: "Literature" },
+  { className: "card_cinema", label: "Cinema" },
+];
 
 const Card = () => {
   return (
     <Box display="flex">
       <Center>
-        <div className="card card_history">
-          {/* <h3 className="title">History</h3> */}
-        </div>
-        <div className="card card_science">
-          {/* <h3 className="title">Science</h3> */}
-        </div>
-        <div className="card card_music">
-          {/* <h3 className="title">Music</h3> */}
-        </div>
-        <div className="card card_geography">
-          {/* <h3 className="title">Geography</h3> */}
-        </div>
-        <div className="card card_literature">
-          {/* <h3 className="title">Literature</h3> */}
-        </div>
-        <div className="card card_cinema">
-          {/* <h3 className="title">Cimena</h3> */}
-        </div>
+        {categories.map((category, index) => (
+          <Box
+            key={index}
+            className={`card ${category.className}`}
+            position="relative"
+          >
+            {/* Black Overlay with Category Name */}
+            <Box
+              position="absolute"
+              top="0"
+              left="0"
+              w="100%"
+              h="100%"
+              bg="rgba(0, 0, 0, 0.6)"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              borderRadius="md"
+            >
+              <Text fontSize="2xl" fontWeight="bold" color="white">
+                {category.label}
+              </Text>
+            </Box>
+          </Box>
+        ))}
       </Center>
     </Box>
   );

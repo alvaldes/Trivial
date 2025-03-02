@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import {
   Box,
-  Center,
   Text,
   Heading,
   Accordion,
@@ -16,7 +15,7 @@ import Card from "../components/cards/card";
 import CardMobile from "../components/cards/cardMobile";
 
 const About = () => {
-  const [isMobile] = useMediaQuery("(max-width: 767px)");
+  const [isMobile] = useMediaQuery("(max-width: 1100px)");
   const [showCards, setShowCards] = useState();
 
   useEffect(() => {
@@ -26,7 +25,7 @@ const About = () => {
   return (
     <Box mt={{ base: 10, md: 12 }}>
       <Heading mb={{ base: 5, md: 10 }} fontSize={{ base: "2xl", md: "3xl" }}>
-        Explore new Topics
+        Explore our Topics
       </Heading>
 
       {showCards}

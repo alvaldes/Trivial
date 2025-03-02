@@ -1,22 +1,22 @@
 @import "react-alice-carousel/lib/alice-carousel.css";
 
 /* About */
-.card_history{
+.card_history {
   background-image: url(/images/card_history.svg);
 }
-.card_literature{
+.card_literature {
   background-image: url(/images/card_literature.svg);
 }
-.card_cinema{
+.card_cinema {
   background-image: url(/images/card_cinema.jpg);
 }
-.card_geography{
+.card_geography {
   background-image: url(/images/card_geography.svg);
 }
-.card_music{
+.card_music {
   background-image: url(/images/card_music.svg);
 }
-.card_science{
+.card_science {
   background-image: url(/images/card_science.jpg);
 }
 
@@ -24,7 +24,7 @@
   display: flex;
   height: 280px;
   min-width: 200px;
-  background-color: #2F855A;
+  background-color: #2f855a;
   background-size: cover;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #112527;
@@ -35,7 +35,7 @@
 }
 
 .card:not(:first-child) {
-    margin-left: -50px;
+  margin-left: -50px;
 }
 
 .card:hover {
@@ -60,10 +60,17 @@
 
 /* Para Mobile */
 .mobile-card {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 100%;
+}
+
+.mobile-card-img {
   background-color: #aaaaaa;
   background-size: cover;
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
   border-radius: 10px;
 }
